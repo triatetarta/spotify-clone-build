@@ -1,4 +1,4 @@
-.songRow {
+.searchedRow {
   margin-left: 20px;
   padding: 20px;
   display: flex;
@@ -11,18 +11,14 @@
     opacity: 0.8;
   }
 
-  .songRow__album {
+  .searchedRow__image {
     height: 40px;
     width: 40px;
     object-fit: contain;
   }
 
-  .songRow__info {
+  .searchedRow__info {
     margin-left: 20px;
-
-    h1 {
-      font-size: 16px;
-    }
 
     p {
       font-size: 14px;

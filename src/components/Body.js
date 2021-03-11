@@ -1,13 +1,16 @@
 import React from 'react';
 import './Body.scss';
 import Header from './Header';
+import SongRow from './SongRow';
+import SearchedRow from './SearchedRow';
 import { useGlobalContext } from '../context/context';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const Body = ({ spotify }) => {
-  const { discover_weekly } = useGlobalContext();
+  const { discover_weekly, searched_artist, playing } = useGlobalContext();
 
   return (
     <div className='body'>
@@ -24,14 +27,27 @@ const Body = ({ spotify }) => {
 
       <div className='body__songs'>
         <div className='body__icons'>
-          <PlayCircleFilledIcon className='body__shuffle' />
+          {playing ? (
+            <PauseCircleFilledIcon className='body__shuffle' />
+          ) : (
+            <PlayCircleFilledIcon className='body__shuffle' />
+          )}
+
           <FavoriteIcon fontSize='large' />
           <MoreHorizIcon />
         </div>
 
-        {discover_weekly?.tracks.items.map((item) => {
-          return <SongRow track={item.track} />;
-        })}
+        {searched_artist.length > 0 ? (
+          searched_artist?.map((artist) => {
+            return <SearchedRow key={artist.id} artist={artist} />;
+          })
+        ) : (
+          <>
+            {discover_weekly?.tracks.items.map((item) => {
+              return <SongRow key={item.track.id} track={item.track} />;
+            })}
+          </>
+        )}
       </div>
     </div>
   );

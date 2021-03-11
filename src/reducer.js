@@ -1,5 +1,15 @@
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'SET_PLAYING':
+      return {
+        ...state,
+        playing: action.playing,
+      };
+    case 'SET_ITEM':
+      return {
+        ...state,
+        item: action.item,
+      };
     case 'SET_USER':
       return {
         ...state,
@@ -10,7 +20,6 @@ const reducer = (state, action) => {
         ...state,
         token: action.token,
       };
-
     case 'SET_PLAYLISTS':
       return {
         ...state,
@@ -20,6 +29,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         discover_weekly: action.discover_weekly,
+      };
+
+    case 'GET_TOP_ARTISTS':
+      return {
+        ...state,
+        top_artists: action.top_artists,
+      };
+    case 'SET_SEARCHED_ARTIST':
+      return {
+        ...state,
+        searched_artist: action.searched_artist,
       };
     default:
       return state;

@@ -3,7 +3,12 @@
   height: 100vh;
   color: #fff;
   padding: 30px;
+  overflow-y: overlay;
   background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .body__info {
     display: flex;
@@ -49,6 +54,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     transition: transform 100ms ease-in;
+    color: #1ed15e;
 
     &:hover {
       transform: scale(1.08);

@@ -15,6 +15,7 @@ const initialState = {
   top_artists: null,
   playing: false,
   item: null,
+  searched_artist: [],
 };
 
 const GlobalProvider = ({ children }) => {
@@ -40,14 +41,21 @@ const GlobalProvider = ({ children }) => {
         });
       });
 
-      spotify.getUserPlaylists().then((playlists) => {
+      spotify.getMyTopArtists().then((topArtists) => {
         dispatch({
-          type: 'SET_PLAYLISTS',
-          playlists: playlists,
+          type: 'GET_TOP_ARTISTS',
+          top_artists: topArtists,
         });
       });
 
-      spotify.getPlaylist('37i9dQZEVXcJZyENOWUFo7').then((response) => {
+      spotify.getFeaturedPlaylists().then((playlists) => {
+        dispatch({
+          type: 'SET_PLAYLISTS',
+          playlists: playlists.playlists.items,
+        });
+      });
+
+      spotify.getPlaylist('27ngiww41bqidair7dpe9yi8p').then((response) => {
         dispatch({
           type: 'SET_DISCOVER_WEEKLY',
           discover_weekly: response,
@@ -56,8 +64,19 @@ const GlobalProvider = ({ children }) => {
     }
   }, [dispatch]);
 
+  const searchHandler = (term) => {
+    spotify.searchArtists(term).then((results) => {
+      dispatch({
+        type: 'SET_SEARCHED_ARTIST',
+        searched_artist: results.artists.items,
+      });
+    });
+  };
+
   return (
-    <GlobalContext.Provider value={{ ...state, spotify }}>
+    <GlobalContext.Provider
+      value={{ ...state, dispatch, spotify, searchHandler }}
+    >
       {children}
     </GlobalContext.Provider>
   );

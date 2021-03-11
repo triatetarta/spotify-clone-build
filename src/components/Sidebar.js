@@ -17,12 +17,12 @@ const Sidebar = () => {
       <SidebarOption Icon={SearchOutlinedIcon} title='Search' />
       <SidebarOption Icon={LibraryMusicOutlinedIcon} title='Your Library' />
       <br />
-      <strong className='sidebar__title'>PLAYLISTS</strong>
+      <strong className='sidebar__title'>TOP PLAYLISTS</strong>
       <hr />
 
-      {playlists?.items?.map((playlist) => (
-        <SidebarOption key={playlist.name} title={playlist.name} />
-      ))}
+      {playlists?.map((playlist) => {
+        return <SidebarOption key={playlist.name} title={playlist.name} />;
+      })}
     </div>
   );
 };
