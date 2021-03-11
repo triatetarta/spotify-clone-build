@@ -4,4 +4,54 @@
   color: #fff;
   padding: 30px;
   background: linear-gradient(rgb(91, 87, 115), rgba(0, 0, 0, 1));
+
+  .body__info {
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+
+    img {
+      height: 20vw;
+      margin: 0 20px;
+      box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .body__infoText {
+      flex: 1;
+
+      h2 {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .body__icons {
+    display: flex;
+    align-items: center;
+
+    .MuiSvgIcon-root {
+      margin-right: 20px;
+    }
+  }
+
+  .body__songs {
+    margin: 20px -30px;
+  }
+
+  .body__shuffle {
+    font-size: 80px !important;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: transform 100ms ease-in;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
 }

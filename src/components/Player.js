@@ -8,15 +8,14 @@ import { useGlobalContext } from '../context/context';
 const Player = () => {
   const { spotify } = useGlobalContext();
 
-  console.log(spotify);
   return (
     <div className='player'>
       <div className='player__body'>
         <Sidebar />
-        <Body />
+        <Body spotify={spotify} />
       </div>
 
-      <Footer />
+      <Footer spotify={spotify} />
     </div>
   );
 };

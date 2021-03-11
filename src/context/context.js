@@ -9,10 +9,12 @@ const spotify = new SpotifyWebApi();
 
 const initialState = {
   user: null,
-  playlist: [],
+  playlists: [],
+  spotify: null,
+  discover_weekly: null,
+  top_artists: null,
   playing: false,
   item: null,
-  token: null,
 };
 
 const GlobalProvider = ({ children }) => {
@@ -24,20 +26,35 @@ const GlobalProvider = ({ children }) => {
     const _token = hash.access_token;
 
     if (_token) {
+      spotify.setAccessToken(_token);
+
       dispatch({
         type: 'SET_TOKEN',
         token: _token,
       });
-      spotify.setAccessToken(_token);
 
       spotify.getMe().then((user) => {
         dispatch({
           type: 'SET_USER',
-          user: user,
+          user,
+        });
+      });
+
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: 'SET_PLAYLISTS',
+          playlists: playlists,
+        });
+      });
+
+      spotify.getPlaylist('37i9dQZEVXcJZyENOWUFo7').then((response) => {
+        dispatch({
+          type: 'SET_DISCOVER_WEEKLY',
+          discover_weekly: response,
         });
       });
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <GlobalContext.Provider value={{ ...state, spotify }}>
