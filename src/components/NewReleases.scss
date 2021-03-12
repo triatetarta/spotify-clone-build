@@ -1,0 +1,76 @@
+.newReleases {
+  padding: 30px;
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .newReleases__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    grid-gap: 20px;
+    flex: 0.8;
+
+    .newReleases__card {
+      position: relative;
+      background-color: #121212;
+      padding: 30px;
+      border-radius: 8px;
+      transition: background-color 0.2s ease-in;
+
+      &:hover > .body__icons {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: #282828;
+      }
+
+      .newReleases__cardImage {
+        border-radius: 14px;
+        width: 100%;
+      }
+
+      h4 {
+        padding-top: 10px;
+      }
+
+      p {
+        color: gray;
+        font-size: 14px;
+      }
+
+      .body__icons {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        bottom: 25%;
+        left: 0;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 200ms ease-in;
+
+        .MuiSvgIcon-root {
+          margin-right: 20px;
+        }
+
+        .body__shuffle {
+          font-size: 50px !important;
+          margin-left: 50px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          transition: transform 100ms ease-in;
+          color: #1ed15e;
+
+          &:hover {
+            transform: scale(1.08);
+          }
+        }
+      }
+    }
+  }
+}

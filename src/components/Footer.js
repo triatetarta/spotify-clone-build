@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Footer.scss';
-import ShuffleIcon from '@material-ui/icons/Shuffle';
-import PlayCircleFilledWhiteOutlinedIcon from '@material-ui/icons/PlayCircleFilledWhiteOutlined';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import RepeatIcon from '@material-ui/icons/Repeat';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import VolumeDownIcon from '@material-ui/icons/VolumeDown';
-import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import { Grid, Slider } from '@material-ui/core';
 import { useGlobalContext } from '../context/context';
+import FooterButtons from './FooterButtons';
 
 const Footer = () => {
-  const { item, playing, dispatch, spotify } = useGlobalContext();
+  const { item, dispatch, spotify } = useGlobalContext();
 
   useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
@@ -27,22 +22,6 @@ const Footer = () => {
       });
     });
   }, [spotify]);
-
-  const handlePlayPause = () => {
-    if (playing) {
-      spotify.pause();
-      dispatch({
-        type: 'SET_PLAYING',
-        playing: false,
-      });
-    } else {
-      spotify.play();
-      dispatch({
-        type: 'SET_PLAYING',
-        playing: true,
-      });
-    }
-  };
 
   return (
     <div className='footer'>
@@ -68,26 +47,9 @@ const Footer = () => {
           </div>
         )}
       </div>
-      <div className='footer__center'>
-        <ShuffleIcon className='footer__green' />
-        <SkipPreviousIcon className='footer__icon' />
-        {playing ? (
-          <PauseCircleOutlineIcon
-            onClick={handlePlayPause}
-            fontSize='large'
-            className='footer__icon'
-          />
-        ) : (
-          <PlayCircleFilledWhiteOutlinedIcon
-            onClick={handlePlayPause}
-            fontSize='large'
-            className='footer__icon'
-          />
-        )}
 
-        <SkipNextIcon className='footer__icon' />
-        <RepeatIcon className='footer__green' />
-      </div>
+      <FooterButtons />
+
       <div className='footer__right'>
         <Grid container spacing={2}>
           <Grid item>

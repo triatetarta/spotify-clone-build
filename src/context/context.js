@@ -16,6 +16,7 @@ const initialState = {
   playing: false,
   item: null,
   searched_artist: [],
+  new_releases: null,
 };
 
 const GlobalProvider = ({ children }) => {
@@ -59,6 +60,13 @@ const GlobalProvider = ({ children }) => {
         dispatch({
           type: 'SET_DISCOVER_WEEKLY',
           discover_weekly: response,
+        });
+      });
+
+      spotify.getNewReleases().then((new_r) => {
+        dispatch({
+          type: 'SET_NEW_RELEASES',
+          new_releases: new_r,
         });
       });
     }

@@ -1,0 +1,29 @@
+.footer__center {
+  flex: 0.4;
+  padding: 0 100px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 400px;
+  list-style: none;
+  li {
+    .footer__icon {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .footer__green {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .footer__icon:hover,
+    .footer__green:hover {
+      transition: transform 0.2s ease-in-out;
+      transform: scale(1.1) !important;
+    }
+  }
+}
+
+.active {
+  color: #1ed15e;
+}

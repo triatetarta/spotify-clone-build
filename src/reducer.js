@@ -30,6 +30,11 @@ const reducer = (state, action) => {
         ...state,
         discover_weekly: action.discover_weekly,
       };
+    case 'SET_NEW_RELEASES':
+      return {
+        ...state,
+        new_releases: action.new_releases,
+      };
 
     case 'GET_TOP_ARTISTS':
       return {
