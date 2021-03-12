@@ -1,31 +1,31 @@
 import React from 'react';
-import './NewReleases.scss';
+import './RecentPlayed.scss';
 import { useGlobalContext } from '../context/context';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-const NewReleases = () => {
-  const { new_releases, playing } = useGlobalContext();
+const RecentPlayed = () => {
+  const { recent_played, playing } = useGlobalContext();
+  console.log(recent_played);
 
   return (
-    <div className='newReleases'>
-      <strong>PLAYLIST</strong>
-      <h2>New Releases</h2>
-      <div className='newReleases__container'>
-        {new_releases?.albums?.items.map((item) => {
-          const { id, images, name, artists } = item;
+    <div className='recentPlayed'>
+      <h2>Recently Played</h2>
+      <div className='recentPlayed__container'>
+        {recent_played?.map((item, index) => {
+          const { context, track } = item;
 
           return (
-            <article className='newReleases__card' key={id}>
+            <article className='recentPlayed__card' key={index}>
               <img
-                className='newReleases__cardImage'
-                src={images[0]?.url}
-                alt={name}
+                className='recentPlayed__cardImage'
+                src={track?.album?.images[0]?.url}
+                alt={track.name}
               />
-              <h4>{artists[0]?.name}</h4>
-              <p>{name}</p>
+              <h4>{track.artists[0]?.name}</h4>
+              <p>{track.name}</p>
               <div className='body__icons'>
                 {playing ? (
                   <PauseCircleFilledIcon className='body__shuffle' />
@@ -44,4 +44,4 @@ const NewReleases = () => {
   );
 };
 
-export default NewReleases;
+export default RecentPlayed;

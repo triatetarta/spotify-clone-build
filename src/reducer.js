@@ -46,6 +46,11 @@ const reducer = (state, action) => {
         ...state,
         searched_artist: action.searched_artist,
       };
+    case 'GET_RECENT_PLAYED':
+      return {
+        ...state,
+        recent_played: action.recent_played,
+      };
     default:
       return state;
   }

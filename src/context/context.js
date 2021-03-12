@@ -11,12 +11,12 @@ const initialState = {
   user: null,
   playlists: [],
   spotify: null,
-  discover_weekly: null,
   top_artists: null,
   playing: false,
   item: null,
   searched_artist: [],
   new_releases: null,
+  recent_played: null,
 };
 
 const GlobalProvider = ({ children }) => {
@@ -56,17 +56,17 @@ const GlobalProvider = ({ children }) => {
         });
       });
 
-      spotify.getPlaylist('27ngiww41bqidair7dpe9yi8p').then((response) => {
-        dispatch({
-          type: 'SET_DISCOVER_WEEKLY',
-          discover_weekly: response,
-        });
-      });
-
       spotify.getNewReleases().then((new_r) => {
         dispatch({
           type: 'SET_NEW_RELEASES',
           new_releases: new_r,
+        });
+      });
+
+      spotify.getMyRecentlyPlayedTracks().then((recent) => {
+        dispatch({
+          type: 'GET_RECENT_PLAYED',
+          recent_played: recent.items,
         });
       });
     }

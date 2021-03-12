@@ -9,7 +9,7 @@ import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import { useGlobalContext } from '../context/context';
 
 const FooterButtons = () => {
-  const { item, playing, dispatch, spotify } = useGlobalContext();
+  const { playing, dispatch, spotify } = useGlobalContext();
   const [shuffle, setShuffle] = useState(false);
   const [random, setRandom] = useState(false);
 

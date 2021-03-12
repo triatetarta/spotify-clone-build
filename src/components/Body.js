@@ -3,7 +3,7 @@ import './Body.scss';
 import Header from './Header';
 import SearchedRow from './SearchedRow';
 import { useGlobalContext } from '../context/context';
-
+import RecentPlayed from './RecentPlayed';
 import NewReleases from './NewReleases';
 
 const Body = ({ spotify }) => {
@@ -19,7 +19,10 @@ const Body = ({ spotify }) => {
             return <SearchedRow key={artist.id} artist={artist} />;
           })
         ) : (
-          <NewReleases />
+          <>
+            <RecentPlayed />
+            <NewReleases />
+          </>
         )}
       </div>
     </div>
